@@ -70,45 +70,42 @@ char * tryWord(char * plaintext, char * hashFilename)
 
 int main(int argc, char *argv[])
 {
+
+    char dictionaryFileName[STR_MAX] = "enable1.txt";
+    char targetFileName[STR_MAX] = "hashes00.txt";
+
     if (argc < 3) 
     {
         fprintf(stderr, "Usage: %s hash_file dict_file\n", argv[0]);
         exit(1);
     }
 
-    // These two lines exist for testing. When you have
-    // tryWord working, it should display the hash for "hello",
-    // which is 5d41402abc4b2a76b9719d911017c592.
-    // Then you can remove these two lines and complete the rest
-    // of the main function below.
-    //char *found = tryWord("hello", "hashes00.txt");
-    //printf("%s %s\n", found, "hello");
-
 
     // Open the dictionary file for reading.
-    FILE *dictionary = fopen("enable1.txt", "r");
+    FILE *dictionary = fopen(dictionaryFileName, "r");
     
 
     // For each dictionary word, pass it to tryWord, which
     // will attempt to match it against the hashes in the hash_file.
     char line[STR_MAX];
+    int count = 0;
     while(fgets(line, sizeof(line), dictionary)) {
 
         // If we got a match, display the hash and the word. For example:
         // 5d41402abc4b2a76b9719d911017c592 hello
-        char *match = tryWord(trim(line),"hashes00.txt");
-        if(match){printf("%s = %s\n", match, trim(line));}
+        char *match = tryWord(trim(line),targetFileName);
+        if(match){
+            printf("%s = %s\n", match, trim(line));
+            count++;
+            }
 
     }
     
-    
-    
-    // Close the dictionary file.
-
+    // Close the dictionary file
     // Display the number of hashes that were cracked.
-    
     // Free up any malloc'd memory?
-    //free(found);
     fclose(dictionary);
+    printf("\nFile: \t\t%s\nDictionary: \t%s\n", targetFileName, dictionaryFileName);
+    printf("\nFound [%03d] total\n", count);
 }
 
