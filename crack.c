@@ -71,8 +71,8 @@ char * tryWord(char * plaintext, char * hashFilename)
 int main(int argc, char *argv[])
 {
 
-    char dictionaryFileName[STR_MAX] = "enable1.txt";
-    char targetFileName[STR_MAX] = "hashes00.txt";
+    char dictionaryFileName[STR_MAX] = "rockyou100k.txt";
+    char targetFileName[STR_MAX] = "hashes04.txt";
 
     if (argc < 3) 
     {
@@ -106,6 +106,6 @@ int main(int argc, char *argv[])
     // Free up any malloc'd memory?
     fclose(dictionary);
     printf("\nFile: \t\t%s\nDictionary: \t%s\n", targetFileName, dictionaryFileName);
-    printf("\nFound [%03d] total\n", count);
+    printf("\nFound [%04d] matches total\n", count);
 }
 
