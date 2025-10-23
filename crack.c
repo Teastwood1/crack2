@@ -1,3 +1,7 @@
+// Thomas Eastwood
+// 10-23-2025 - CS46 Prof. Brown
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
